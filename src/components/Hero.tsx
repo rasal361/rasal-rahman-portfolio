@@ -8,6 +8,13 @@ const Hero = () => {
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-primary/5 blur-[120px] pointer-events-none" />
 
       <div className="container mx-auto px-6 text-center relative z-10">
+            <div className="w-full flex justify-center mb-6">
+              <img
+                src="/rasal.jpg"
+                alt="A P Rasal Rahman"
+                className="w-36 h-36 rounded-full object-cover border-4 border-primary/20 shadow-md"
+              />
+            </div>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

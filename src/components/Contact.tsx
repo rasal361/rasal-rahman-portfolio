@@ -1,45 +1,20 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
-import { Mail, Linkedin, Github, Send } from "lucide-react";
+import { Mail, Linkedin, Github, Phone, Download } from "lucide-react";
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogFooter,
+  DialogClose,
+} from "./ui/dialog";
+import { Button } from "./ui/button";
 
-declare global {
-  interface Window {
-    emailjs: any;
-  }
-}
+const resumePath = encodeURI("/A P RASAL RAHMAN CV .pdf");
 
 const Contact = () => {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [isLoading, setIsLoading] = useState(false);
-  const [status, setStatus] = useState<"idle" | "success" | "error">("idle");
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setStatus("idle");
-
-    try {
-      const templateParams = {
-        to_email: "rasalrahman361@gmail.com",
-        from_name: form.name,
-        from_email: form.email,
-        message: form.message,
-      };
-
-      await window.emailjs.send("service_id", "template_id", templateParams);
-      
-      setStatus("success");
-      setForm({ name: "", email: "", message: "" });
-      setTimeout(() => setStatus("idle"), 3000);
-    } catch (error) {
-      console.error("EmailJS error:", error);
-      setStatus("error");
-      setTimeout(() => setStatus("idle"), 3000);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   return (
     <section id="contact" className="py-24">
       <div className="container mx-auto px-6 max-w-2xl">
@@ -49,7 +24,7 @@ const Contact = () => {
           viewport={{ once: true }}
           className="text-3xl sm:text-4xl font-bold text-center mb-6"
         >
-          Get In <span className="text-gradient">Touch</span>
+          Contact
         </motion.h2>
 
         <motion.p
@@ -57,117 +32,103 @@ const Contact = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
-          className="text-center text-muted-foreground mb-12"
+          className="text-center text-muted-foreground mb-8"
         >
-          Have a project in mind? Let's build something great together.
+          You can reach me via the links below — email, GitHub, LinkedIn or WhatsApp/phone.
         </motion.p>
 
-        {/* Social links */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.15 }}
-          className="flex justify-center gap-4 mb-12"
+          className="flex flex-col items-center gap-4 mb-8"
         >
-          <a
-            href="mailto:rasalrahman361@gmail.com"
-            className="p-3 glass rounded-lg hover:border-primary/30 transition-colors text-muted-foreground hover:text-primary"
-            aria-label="Email"
-          >
-            <Mail size={20} />
-          </a>
-          <a
-            href="https://linkedin.com/in/rasal-rahman"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-3 glass rounded-lg hover:border-primary/30 transition-colors text-muted-foreground hover:text-primary"
-            aria-label="LinkedIn"
-          >
-            <Linkedin size={20} />
-          </a>
-          <a
-            href="https://github.com/rasal-rahman"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-3 glass rounded-lg hover:border-primary/30 transition-colors text-muted-foreground hover:text-primary"
-            aria-label="GitHub"
-          >
-            <Github size={20} />
-          </a>
+          <div className="flex items-center gap-3">
+            <a
+              href="mailto:rasalrahman361@gmail.com"
+              className="inline-flex items-center gap-2 p-3 glass rounded-lg hover:border-primary/30 transition-colors text-muted-foreground hover:text-primary"
+            >
+              <Mail size={18} />
+              <span>rasalrahman361@gmail.com</span>
+            </a>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <a
+              href="https://github.com/rasal361"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 p-3 glass rounded-lg hover:border-primary/30 transition-colors text-muted-foreground hover:text-primary"
+            >
+              <Github size={18} />
+              <span>rasal361</span>
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/a-p-rasal-rahman"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 p-3 glass rounded-lg hover:border-primary/30 transition-colors text-muted-foreground hover:text-primary"
+            >
+              <Linkedin size={18} />
+              <span>a-p-rasal-rahman</span>
+            </a>
+          </div>
+
+          <div className="flex items-center gap-3">
+            <a
+              href="https://wa.me/971563123066"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 p-3 glass rounded-lg hover:border-primary/30 transition-colors text-muted-foreground hover:text-primary"
+            >
+              <Phone size={18} />
+              <span>+971 56 312 3066 (WhatsApp)</span>
+            </a>
+
+            <a
+              href="tel:+971563123066"
+              className="inline-flex items-center gap-2 p-3 glass rounded-lg hover:border-primary/30 transition-colors text-muted-foreground hover:text-primary"
+            >
+              <Phone size={18} />
+              <span>+971 56 312 3066</span>
+            </a>
+          </div>
         </motion.div>
 
-        {/* Contact form */}
-        <motion.form
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-          onSubmit={handleSubmit}
-          className="glass rounded-xl p-8 space-y-5"
-        >
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium mb-2">
-              Name
-            </label>
-            <input
-              id="name"
-              type="text"
-              required
-              value={form.name}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
-              className="w-full px-4 py-3 rounded-lg bg-secondary border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition"
-              placeholder="Your name"
-            />
-          </div>
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium mb-2">
-              Email
-            </label>
-            <input
-              id="email"
-              type="email"
-              required
-              value={form.email}
-              onChange={(e) => setForm({ ...form, email: e.target.value })}
-              className="w-full px-4 py-3 rounded-lg bg-secondary border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition"
-              placeholder="you@example.com"
-            />
-          </div>
-          <div>
-            <label htmlFor="message" className="block text-sm font-medium mb-2">
-              Message
-            </label>
-            <textarea
-              id="message"
-              required
-              rows={4}
-              value={form.message}
-              onChange={(e) => setForm({ ...form, message: e.target.value })}
-              className="w-full px-4 py-3 rounded-lg bg-secondary border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition resize-none"
-              placeholder="Tell me about your project..."
-            />
-          </div>
-          <button
-            type="submit"
-            disabled={isLoading}
-            className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-gradient-blue text-primary-foreground font-semibold hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {isLoading ? "Sending..." : "Send Message"} <Send size={18} />
-          </button>
+        <div className="flex justify-center gap-4">
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button variant="default">View Resume <Download className="ml-2" /></Button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Resume — A P Rasal Rahman</DialogTitle>
+                <DialogDescription>Preview and download my CV.</DialogDescription>
+              </DialogHeader>
 
-          {status === "success" && (
-            <div className="p-4 rounded-lg bg-green-500/10 border border-green-500/20 text-green-600 text-sm">
-              ✓ Message sent successfully! I'll get back to you soon.
-            </div>
-          )}
+              <div className="mt-4">
+                <iframe
+                  title="Resume PDF"
+                  src={resumePath}
+                  className="w-full h-[70vh] border border-border rounded"
+                />
+              </div>
 
-          {status === "error" && (
-            <div className="p-4 rounded-lg bg-red-500/10 border border-red-500/20 text-red-600 text-sm">
-              ✗ Failed to send message. Please try again or contact me directly.
-            </div>
-          )}
-        </motion.form>
+              <DialogFooter className="mt-4">
+                <a href={resumePath} download className="inline-flex">
+                  <Button variant="outline">
+                    Download PDF
+                  </Button>
+                </a>
+                <DialogClose asChild>
+                  <Button variant="ghost">Close</Button>
+                </DialogClose>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+        </div>
       </div>
     </section>
   );
