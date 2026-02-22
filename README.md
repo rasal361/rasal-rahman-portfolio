@@ -60,7 +60,7 @@ public/                  # Static assets
 
 ```bash
 # Clone the repository
-git clone https://github.com/Mohd-Aflah/rasal-rahman-portfolio.git
+git clone https://github.com/rasal361/rasal-rahman-portfolio.git
 cd rasal-rahman-portfolio
 
 # Install dependencies
