@@ -30,7 +30,7 @@ const Experience = () => {
                 Full Stack Developer & Jr. Project Manager
               </h3>
               <p className="text-primary text-sm font-mono mt-1">
-                PRO26 LLP, India · July 2025 – Dec 2025
+                PRO26 LLP, India · Jan 2025 – Jan 2026
               </p>
               <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
                 <li className="flex items-start gap-2">
