@@ -10,6 +10,10 @@ const categories = [
     items: ["Flutter", "React.js", "Node.js"],
   },
   {
+    title: "Platforms / CMS",
+    items: ["Shopify", "WordPress"],
+  },
+  {
     title: "Databases",
     items: ["MySQL", "Appwrite"],
   },
