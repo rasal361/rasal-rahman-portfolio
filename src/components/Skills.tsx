@@ -23,7 +23,7 @@ const categories = [
   },
   {
     title: "Cloud",
-    items: ["Microsoft Azure "],
+    items: ["Microsoft Azure (AI Essentials"],
   },
 ];
 
