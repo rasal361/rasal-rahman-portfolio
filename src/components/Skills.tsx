@@ -15,7 +15,7 @@ const categories = [
   },
   {
     title: "Databases",
-    items: ["MySQL", "Appwrite"],
+    items: ["MySQL", "MongoDB", "Appwrite"],
   },
   {
     title: "Tools",
