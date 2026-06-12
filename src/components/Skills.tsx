@@ -3,11 +3,11 @@ import { motion } from "framer-motion";
 const categories = [
   {
     title: "Languages",
-    items: ["JavaScript", "Python", "HTML", "CSS", "Dart"],
+    items: ["JavaScript", "Python", "HTML", "CSS", "Dart", "PHP"],
   },
   {
     title: "Frameworks",
-    items: ["Flutter", "React.js", "Node.js"],
+    items: ["Flutter", "React.js", "Node.js", "Laravel"],
   },
   {
     title: "Platforms / CMS",
